@@ -17,7 +17,7 @@ class Article(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=25, default=1)
-    main = models.ManyToManyField(Article, related_name='tags')
+    tag = models.ManyToManyField(Article, related_name='tags')
 
     def __str__(self):
         return self.name
