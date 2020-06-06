@@ -6,7 +6,6 @@ from .models import Student
 
 def students_list(request):
     template = 'school/students_list.html'
-    # https://docs.djangoproject.com/en/2.2/ref/models/querysets/#django.db.models.query.QuerySet.order_by
     ordering = 'group'
     objects_list = Student.objects.all().order_by(ordering)
     context = {'object_list': objects_list}
