@@ -18,4 +18,4 @@ class RelationshipInline(admin.TabularInline):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    inlines = ['Tag']
+    inlines = [RelationshipInline]
