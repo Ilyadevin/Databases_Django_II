@@ -14,6 +14,7 @@ class RelationshipInlineFormset(BaseInlineFormSet):
 
 class RelationshipInline(admin.TabularInline):
     model = Tag
+    formset = RelationshipInlineFormset
 
 
 @admin.register(Article)
