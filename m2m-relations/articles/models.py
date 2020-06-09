@@ -17,8 +17,12 @@ class Article(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=25, default=1)
-    tag = models.ManyToManyField(Article, related_name='tags')
-    normal_article = models.ManyToManyField(Article, on_delete=models.CASCADE, )
+    tag = models.ManyToManyField(Article, through='PublishedArticles')
 
     def __str__(self):
         return self.name
+
+
+class PublishedArticles(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    tags = models.ForeignKey(Tag, on_delete=models.CASCADE)

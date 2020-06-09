@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
-from .models import Article, Tag
+from .models import Article, Tag, PublishedArticles
 
 
 class RelationshipInlineFormset(BaseInlineFormSet):
@@ -12,11 +12,11 @@ class RelationshipInlineFormset(BaseInlineFormSet):
         return super().clean()
 
 
-class RelationshipInline(admin.TabularInline):
-    model = Tag
+class PublishedArticlesInline(admin.TabularInline):
+    model = PublishedArticles
     formset = RelationshipInlineFormset
 
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    inlines = [RelationshipInline]
+    inlines = [PublishedArticlesInline]
