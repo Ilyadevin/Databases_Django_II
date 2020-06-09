@@ -20,3 +20,8 @@ class PublishedArticlesInline(admin.TabularInline):
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     inlines = [PublishedArticlesInline]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    inlines = [PublishedArticlesInline]
