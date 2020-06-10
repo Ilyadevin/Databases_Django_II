@@ -8,7 +8,6 @@ class RelationshipInlineFormset(BaseInlineFormSet):
     def clean(self):
         for form in self.forms:
             form.cleaned_data
-            raise ValidationError('Тут всегда ошибка')
         return super().clean()
 
 
