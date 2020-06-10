@@ -17,7 +17,7 @@ class Article(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=25, default=1)
-    tag = models.ManyToManyField(Article, through='PublishedArticles')
+    tag = models.ManyToManyField(Article, through='PublishedArticles', verbose_name='Теги')
 
     def __str__(self):
         return self.name
@@ -26,3 +26,6 @@ class Tag(models.Model):
 class PublishedArticles(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     tags = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    is_main = models.BooleanField(default=False,
+                                  verbose_name='Главный тег'
+                                  )
