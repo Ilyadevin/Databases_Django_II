@@ -7,8 +7,10 @@ from .models import Article, Tag, PublishedArticles
 class RelationshipInlineFormset(BaseInlineFormSet):
     def clean(self):
         for form in self.forms:
-            form.cleaned_data
-        return super().clean()
+            if form.cleaned_data:
+                return super().clean()
+            else:
+                raise ValidationError('Тут всегда ошибка')
 
 
 class PublishedArticlesInline(admin.TabularInline):

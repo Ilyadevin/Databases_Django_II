@@ -16,7 +16,8 @@
         {% for tag in article.tag.all %}
           <span class="badge {% if tag.is_main %}badge-primary
                                 {% else %}badge-secondary
-                             {% endif %}">{{ tag.name }}</span>
+                             {% endif %}"
+          >{{ tag.name }}</span>
         {% endfor %}
       </div>
     </div>
