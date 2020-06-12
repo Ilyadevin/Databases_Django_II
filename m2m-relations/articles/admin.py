@@ -11,9 +11,9 @@ class RelationshipInlineFormset(BaseInlineFormSet):
     def clean(self):
         for form in self.forms:
             if form.cleaned_data:
-                if form.cleaned_data['is_main']:
-                    Bool_counter[form.cleaned_data['is_main']] += 1
-                    if Bool_counter[form.cleaned_data['is_main']] > 1:
+                if form.cleaned_data['tags', 'is_main']:
+                    Bool_counter[form.cleaned_data['tags', 'is_main']] += 1
+                    if Bool_counter[form.cleaned_data['tags', 'is_main']] > 1:
                         raise ValidationError('Главный тег')
                     else:
                         return super().clean()
