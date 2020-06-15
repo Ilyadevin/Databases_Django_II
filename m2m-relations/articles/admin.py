@@ -4,21 +4,21 @@ from django.forms import BaseInlineFormSet
 from .models import Article, Tag, PublishedArticles
 from collections import Counter
 
-Bool_counter = Counter()
-
 
 class RelationshipInlineFormset(BaseInlineFormSet):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.bool_counter = Counter()
+
     def clean(self):
         for form in self.forms:
             if form.cleaned_data:
-                if form.cleaned_data['tags', 'is_main']:
-                    Bool_counter[form.cleaned_data['tags', 'is_main']] += 1
-                    if Bool_counter[form.cleaned_data['tags', 'is_main']] > 1:
-                        raise ValidationError('Главный тег')
-                    else:
-                        return super().clean()
-                else:
+                if form.cleaned_data['is_main'] is False and self.bool_counter[form.cleaned_data['is_main']] == 0:
+                    raise ValidationError('У статьи должен быть главный тег!')
+                elif form.cleaned_data['is_main'] is True and self.bool_counter[form.cleaned_data['is_main']] == 1:
                     return super().clean()
+                elif form.cleaned_data['is_main'] is True and self.bool_counter[form.cleaned_data['is_main']] > 1:
+                    raise ValidationError('Главный тег уже сть')
             else:
                 raise ValidationError('Тег не может быть пустым!')
 
