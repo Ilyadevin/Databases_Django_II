@@ -1,11 +1,10 @@
-from django.views.generic import ListView
 from django.shortcuts import render
-from .models import Article, Tag, PublishedArticles
+from .models import Article, PublishedArticles
 
 
 def articles_list(request):
     template = 'articles/news.html'
     ordering = '-published_at'
-    articles = Article.objects.all().order_by(ordering)
-    context = {'object_list': articles,}
+    articles = PublishedArticles.objects.all().order_by(ordering)
+    context = {'object_list': PublishedArticles,}
     return render(request, template, context)

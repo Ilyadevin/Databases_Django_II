@@ -4,17 +4,17 @@
 {% block title %}Новости{% endblock %}
 {% block content %}
 <div class="row">
-  {% for article in object_list %}
+  {% for row in object_list.article_set.all %}
   <div class="col-lg-4 col-sm-6 portfolio-item">
     <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="{% get_media_prefix %}{{ article.image }}" alt=""></a>
+      <a href="#"><img class="card-img-top" src="{% get_media_prefix %}{{ row.image }}" alt=""></a>
       <div class="card-body">
         <h4 class="card-title">
-          <a href="#">{{ article.title }}</a>
+          <a href="#">{{ row.title }}</a>
         </h4>
-        <p class="card-text">{{ article.text }}</p>
-        {% for tag in article.tag.all %}
-          <span class="badge {% if tag.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ tag.name }}</span>
+        <p class="card-text">{{ row.text }}</p>
+        {% for tag in object_list.tags_set.all %}
+          <span class="badge {% if object_list.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ tag.name }}</span>
         {% endfor %}
       </div>
     </div>

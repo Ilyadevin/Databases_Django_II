@@ -7,17 +7,17 @@ from collections import Counter
 
 class RelationshipInlineFormset(BaseInlineFormSet):
     def clean(self):
-        bool_counter = Counter()
+        bool_counter = 0
         for form in self.forms:
             if form.cleaned_data:
-                if form.cleaned_data['is_main'] is False and bool_counter[form.cleaned_data['is_main']] == 0:
-                    raise ValidationError('У статьи должен быть главный тег!')
-                elif form.cleaned_data['is_main'] is True and bool_counter[form.cleaned_data['is_main']] == 1:
+                if form.cleaned_data['is_main'] is True:
+                    bool_counter += 1
+                elif bool_counter == 1:
                     return super().clean()
-                elif form.cleaned_data['is_main'] is True and bool_counter[form.cleaned_data['is_main']] > 1:
-                    raise ValidationError('Главный тег уже сть')
-            else:
-                raise ValidationError('Тег не может быть пустым!')
+                elif bool_counter > 1:
+                    raise ValidationError('Главный тег уже есть')
+                elif bool_counter == 0:
+                    raise ValidationError('Нужно указать один главный тег')
 
 
 class PublishedArticlesInline(admin.TabularInline):
