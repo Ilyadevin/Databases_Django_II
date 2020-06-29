@@ -13,8 +13,8 @@
           <a href="#">{{ row.title }}</a>
         </h4>
         <p class="card-text">{{ row.text }}</p>
-        {% for tag in tags %}
-          <span class="badge {% if object_list.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ tag.name }}</span>
+        {% for tag_1 in tags %}
+          <span class="badge {% if tag_1.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ row.tag }}</span>
         {% endfor %}
       </div>
     </div>
