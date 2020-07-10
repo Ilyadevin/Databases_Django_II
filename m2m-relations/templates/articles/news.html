@@ -14,9 +14,7 @@
         </h4>
         <p class="card-text">{{ row.text }}</p>
         {% for tag_1 in tags %}
-          {% if tag_1.tags.name in row.tag %}
-            <span cass="badge {% if tag_1.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{tag_1.tags.name}}</span>
-          {% endif %}
+            <span cass="badge {% if tag_1.is_main and tag_1.tags.name in row.tag.name %}badge-primary{% else %}badge-secondary{% endif %}">{{tag_1.tags.name}}</span>
         {% endfor %}
       </div>
     </div>
