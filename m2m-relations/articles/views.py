@@ -7,5 +7,5 @@ def articles_list(request):
     ordering = '-published_at'
     articles = Article.objects.all()
     tags = PublishedArticles.objects.all()
-    context = {'object_list': articles, 'tags': tags}
+    context = {'object_list': articles, 'tags_setted': tags}
     return render(request, template, context)
