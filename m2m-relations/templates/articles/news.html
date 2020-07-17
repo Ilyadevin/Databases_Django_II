@@ -14,10 +14,12 @@
         </h4>
         <p class="card-text">{{ row.text }}</p>
         {% for tag_1 in tags_setted %}
-         {% if tag_1.tags == [row.tag.name] %}
-            <span cass="badge {% if tag_1.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{%%}</span>
+          {% if tag_1.article.id == row.id %}
+            <span cass="badge {% if tag_1.is_main %}badge-primary{% else %}badge-secondary{% endif %}"> {{tag_1.tags}}</span>
+          {% else %}
+            {{pass}}
           {% endif %}
-        {% endfor %}
+            {% endfor %}
       </div>
     </div>
   </div>
